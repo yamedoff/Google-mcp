@@ -1,21 +1,26 @@
-This is a Gemini extension that provides tools for interacting with Google Workspace services like Google Docs.
+# Google Workspace MCP Server
 
-### Building and Running
+This repository provides a Model Context Protocol (MCP) server with tools for interacting with Google Workspace services such as Docs, Sheets, Slides, Drive, Calendar, Chat, Gmail, and People.
 
-*   **Install dependencies:** `npm install`
-*   **Build the project:** `npm run build --prefix workspace-server`
+## Building and Running
 
-### Development Conventions
+- **Install dependencies:** `npm install`
+- **Build the project:** `npm run build --workspace workspace-server`
+- **Run the server over stdio:** `node workspace-server/dist/index.js --stdio`
 
-This project uses TypeScript and the Model Context Protocol (MCP) SDK to create a Gemini extension. The main entry point is `src/index.ts`, which initializes the MCP server and registers the available tools.
+Configure your MCP client to launch the server using the command above. The first launch will walk you through OAuth for the Google account you plan to use.
 
-The business logic for each service is separated into its own file in the `src/services` directory. For example, `src/services/DocsService.ts` contains the logic for interacting with the Google Docs API.
+## Development Conventions
 
-Authentication is handled by the `src/auth/AuthManager.ts` file, which uses the `@google-cloud/local-auth` library to obtain and refresh OAuth 2.0 credentials.
+The server is written in TypeScript using the Model Context Protocol SDK. The main entry point is `workspace-server/src/index.ts`, which initializes the MCP server and registers the available tools.
 
-### Adding New Tools
+The business logic for each service is separated into its own file in `workspace-server/src/services`. For example, `workspace-server/src/services/DocsService.ts` contains the logic for interacting with the Google Docs API.
 
-To add a new tool, you need to:
+Authentication is handled by `workspace-server/src/auth/AuthManager.ts`, which uses the `@google-cloud/local-auth` library to obtain and refresh OAuth 2.0 credentials.
 
-1.  Add a new method to the appropriate service file in `src/services`.
-2.  In `src/index.ts`, register the new tool with the MCP server by calling `server.registerTool()`. You will need to provide a name for the tool, a description, and the input schema using the `zod` library.
+## Adding New Tools
+
+To add a new tool:
+
+1. Add a new method to the appropriate service file in `workspace-server/src/services`.
+2. In `workspace-server/src/index.ts`, register the new tool with the MCP server by calling `server.registerTool()`. Provide a tool name, description, and input schema using the `zod` library.

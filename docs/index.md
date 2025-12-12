@@ -1,10 +1,59 @@
-# Google Workspace Extension Documentation
+# Google Workspace MCP Server Documentation
 
-This document provides an overview of the Google Workspace extension for Gemini CLI.
+This document describes the tools exposed by the Google Workspace Model Context Protocol (MCP) server and how to use them from any MCP-compatible client.
+
+## Running the server
+
+Build and start the server from the repository root:
+
+```bash
+npm install
+npm run build --workspace workspace-server
+node workspace-server/dist/index.js --stdio
+```
+
+Add the server to your MCP client configuration (example `mcp.config.json`):
+
+```json
+{
+  "servers": {
+    "google-workspace": {
+      "command": "node",
+      "args": ["workspace-server/dist/index.js", "--stdio"]
+    }
+  }
+}
+```
+
+Once connected, your MCP client will list tools like `docs.create`, `drive.search`, and `calendar.listEvents` for use in prompts or direct tool calls.
+
+### Example tool call payloads
+
+- Create a document:
+  ```json
+  {
+    "tool": "docs.create",
+    "params": {"title": "Team Notes", "body": "Kickoff agenda"}
+  }
+  ```
+- Get slide metadata:
+  ```json
+  {"tool": "slides.getMetadata", "params": {"presentationId": "<id>"}}
+  ```
+- Find available meeting time for attendees:
+  ```json
+  {
+    "tool": "calendar.findFreeTime",
+    "params": {
+      "attendees": ["a@example.com", "b@example.com"],
+      "durationMinutes": 30
+    }
+  }
+  ```
 
 ## Available Tools
 
-The extension provides the following tools:
+The server provides the following tools:
 
 ### Google Docs
 - `docs.create`: Creates a new Google Doc.
@@ -68,4 +117,3 @@ The extension provides the following tools:
 ### People
 - `people.getUserProfile`: Gets a user's profile information.
 - `people.getMe`: Gets the profile information of the authenticated user.
-
