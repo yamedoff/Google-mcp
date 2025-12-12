@@ -4,7 +4,7 @@
   "description": "Google Workspace Server Extension",
   "private": true,
   "bin": {
-    "gemini-workspace-server": "workspace-server/dist/index.js"
+    "gemini-workspace-server": "scripts/start.js"
   },
   "workspaces": [
     "workspace-server"
