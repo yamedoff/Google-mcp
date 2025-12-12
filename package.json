@@ -1,10 +1,10 @@
 {
-  "name": "gemini-workspace-extension",
+  "name": "google-workspace-mcp-server",
   "version": "0.0.3",
-  "description": "Google Workspace Server Extension",
+  "description": "Model Context Protocol server for Google Workspace.",
   "private": true,
   "bin": {
-    "gemini-workspace-server": "workspace-server/dist/index.js"
+    "google-workspace-mcp-server": "workspace-server/dist/index.js"
   },
   "workspaces": [
     "workspace-server"
@@ -17,6 +17,7 @@
     "test:coverage": "npm run test:coverage --workspaces --if-present",
     "test:ci": "npm run test:ci --workspaces --if-present",
     "start": "npm run start --workspaces --if-present",
+    "start:prod": "node workspace-server/dist/index.js",
     "auth-utils": "npm run build:auth-utils -w workspace-server && node scripts/auth-utils.js",
     "clean": "npm run clean --workspaces --if-present && rm -rf release node_modules logs",
     "lint": "eslint .",
@@ -73,7 +74,8 @@
     "google-people",
     "google-sheets",
     "google-slides",
-    "gemini-cli"
+    "mcp",
+    "model-context-protocol"
   ],
   "author": "Allen Hutchison",
   "license": "Apache-2.0"
