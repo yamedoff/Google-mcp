@@ -32,6 +32,16 @@ Once the extension is installed, you can use it to interact with your Google Wor
 
 > "Find the file named 'my-file.txt' in my Google Drive."
 
+## Running the MCP server directly
+
+If you want to launch the MCP server yourself (for example, from another MCP client), run the built server over stdio:
+
+```bash
+node workspace-server/dist/index.js
+```
+
+The entrypoint uses standard input/output for communication, so clients can connect without any extension-specific setup steps. When installed globally, you can also use the binary name `gemini-workspace-server` to start the server.
+
 ## Commands
 
 This extension provides a variety of commands. Here are a few examples:

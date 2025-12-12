@@ -7,7 +7,7 @@
       "program": "./workspace-server/dist/index.js",
       "command": "node",
       "args": [
-        "scripts${/}start.js"
+        "workspace-server${/}dist${/}index.js"
       ],
       "cwd": "${extensionPath}"
     }
