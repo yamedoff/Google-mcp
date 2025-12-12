@@ -4,8 +4,7 @@
   "contextFileName": "workspace-server${/}WORKSPACE-Context.md",
   "mcpServers": {
     "google-workspace": {
-      "program": "./workspace-server/dist/index.js",
-      "command": "node",
+      "program": "node",
       "args": [
         "workspace-server${/}dist${/}index.js"
       ],
